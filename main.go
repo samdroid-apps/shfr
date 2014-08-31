@@ -26,7 +26,7 @@ func main() {
 	r.PATCH("/records", func(c *gin.Context) {
 		err := SaveRecords()
 		if err != nil {
-			c.String(500, 
+			c.String(500,
                      "Internal server error\n\n\tCould not save (see log)")
 		} else {
 			c.String(200, "Saved!")
