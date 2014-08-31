@@ -21,4 +21,6 @@ RUN cp /shfr/forums.json /data/forums.json
 VOLUME /data
 
 RUN cd /shfr; go build
+
+EXPOSE 8000
 ENTRYPOINT ["/shfr/shfr"]
