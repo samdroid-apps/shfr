@@ -1,3 +1,19 @@
+# Docker Setup
+
+You can run this on docker!  First download our container:
+
+    docker pull samdroid/shfr
+
+Make a data directory (you can call it whatever):
+
+	mkdir shfr_data
+
+Then run it:
+
+    docker run -d -P -v /data:shfr_data samdroid/shfr
+
+Now you can change the `forums.json` in the data folder to change the settings.
+
 # How To Setup
 
 First, open the `forums.json` file.  In there, change the `url` to the public url of your forum instance (eg: `socialhelp.example.com`).  Then change the `forums` mapping to fit your needs.  It is in the format of bundle id to forum name.
