@@ -16,7 +16,7 @@ func main() {
 		}
 
 		c.Writer.Header().Set("Location", url)
-		c.String(301, url)
+		c.String(302, url)
 	})
 
 	r.GET("/records", func(c *gin.Context) {
