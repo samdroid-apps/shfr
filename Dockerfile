@@ -15,9 +15,8 @@ RUN cd /go/src/github.com/gin-gonic/gin/; git fetch origin app_engine; git merge
 RUN go get github.com/julienschmidt/httprouter
 RUN go get github.com/andreaskoch/go-fswatch
 
-RUN grep -rl "FORUMS_FILE string = \"forums.json\"" /shfr/forums.go | xargs sed -i 's@forums.json@/data/forums.json@g'
+RUN grep -rl "RECORDS_FILE string = \"records.json\"" /shfr/record.go | xargs sed -i 's@records.json@/data/records.json@g'
 RUN mkdir /data
-RUN cp /shfr/forums.json /data/forums.json
 VOLUME /data
 
 RUN cd /shfr; go build
