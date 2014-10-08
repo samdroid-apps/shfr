@@ -8,11 +8,16 @@ Make a data directory (you can call it whatever):
 
 	mkdir shfr_data
 
+Make and edit a forums.json:
+
+	wget https://raw.githubusercontent.com/SAMdroid-apps/shfr/master/forums.json
+    nano forums.json
+
 Then run it:
 
-    docker run -d -P -v /data:shfr_data samdroid/shfr
+    docker run -d -P -v /data:shfr_data samdroid/shfr "$(cat forums.json)"
 
-Now you can change the `forums.json` in the data folder to change the settings.
+**Note**: the `"$(cat forums.json)"` will be different in non-bash shells.  Use `(cat forums.json)` in fish (I think).
 
 # How To Setup
 
