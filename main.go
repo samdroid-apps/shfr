@@ -38,7 +38,7 @@ func main() {
 	})
 
 	LoadRecords()
-	go WatchForums()
+	LoadForums()
 
 	r.Run(":8000")
 }
