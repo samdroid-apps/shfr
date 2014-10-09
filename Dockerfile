@@ -8,9 +8,7 @@ RUN mkdir /go
 ENV GOPATH /go
 
 RUN git clone https://github.com/gin-gonic/gin /go/src/github.com/gin-gonic/gin/
-RUN git config --global user.email "you@example.com"
-RUN git config --global user.name "Your Name"
-RUN cd /go/src/github.com/gin-gonic/gin/; git fetch origin app_engine; git merge origin/app_engine -m "Yeah"
+RUN cd /go/src/github.com/gin-gonic/gin/; git fetch origin app_engine; git checkout origin/app_engine; git checkout -b app_engine
 
 RUN go get github.com/julienschmidt/httprouter
 RUN go get github.com/andreaskoch/go-fswatch
