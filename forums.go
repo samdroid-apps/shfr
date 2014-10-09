@@ -1,15 +1,10 @@
-package main
+pfackage main
 
 import (
+	"os"
 	"fmt"
 	"strings"
-	"io/ioutil"
 	"encoding/json"
-	"github.com/andreaskoch/go-fswatch"
-)
-
-const (
-	FORUMS_FILE string = "forums.json"
 )
 
 type ForumsFile struct {
@@ -34,17 +29,17 @@ func GetForum(id string) (string, bool) {
 	}
 }
 
-func loadForums() {
-	fmt.Println("[INFO] forums.json changed, reloading")
+func LoadForums() {
+	fmt.Println("[INFO] forums.json loading")
 
-	data, err := ioutil.ReadFile(FORUMS_FILE)
-	if err != nil {
-		fmt.Println("[ERROR] Couldn't load forums.json - " +
-					"file error (did you forget to add it?)")
-		return
+	if len(os.Args) != 2 {
+		fmt.Println("[ERROR] Bad usage")
+		fmt.Println("Usage: ./shfr \"$(cat forums.json)\"")
+		os.Exit(1)
 	}
 
-	err = json.Unmarshal(data, &forum)
+	data := os.Args[1]
+	err := json.Unmarshal([]byte(data), &forum)
 	if err != nil {
 		fmt.Println("[ERROR] Couldn't load forums.json - " +
 					"json load error")
@@ -60,17 +55,5 @@ func loadForums() {
 		forum.URL = forum.URL[:len(forum.URL)-1]
 	}
 
-	fmt.Println("[INFO] forums.json reloaded")
-}
-
-func WatchForums() {
-	loadForums()
-	fw := fswatch.NewFileWatcher(FORUMS_FILE).Start()
-	for fw.IsRunning() {
-		select {
-		case <-fw.Modified:
-			loadForums()
-		default:
-		}
-	}
+	fmt.Println("[INFO] forums.json loaded")
 }
