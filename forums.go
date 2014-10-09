@@ -1,4 +1,4 @@
-pfackage main
+package main
 
 import (
 	"os"
